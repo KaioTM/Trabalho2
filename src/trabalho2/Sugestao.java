@@ -17,7 +17,7 @@ public class Sugestao implements Serializable{
     public Sugestao(String nome, String sugestao) {
         this.nome = nome;
         this.sugestao = sugestao;
-        this.dataSugestao = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new java.util.Date());
+        this.dataSugestao = new SimpleDateFormat("dd.MM.yyyy").format(new java.util.Date());
     }
     private String nome;
     private String sugestao;
