@@ -7,6 +7,7 @@ package trabalho2;
 
 import java.security.Timestamp;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -22,11 +23,12 @@ public class Trabalho2 {
         String nomeDigitado;
         String sugestaoDigitada;
         Scanner teclado = new Scanner(System.in);
-        int i = 0;
+        int i = 9,j=9;
+        Sugestoes.getInstancia().carregaSugestoes();
 
         do {
-
-            switch (Menu.imprimeMenu()) {
+            i = Menu.imprimeMenuInicial();
+            switch (i) {
 
                 case 1:
                     System.out.println("Digite o nome: ");
@@ -34,10 +36,39 @@ public class Trabalho2 {
                     System.out.println("Digite sua sugestão: ");
                     sugestaoDigitada = teclado.nextLine();
                     Sugestao sugestaoIncluida = new Sugestao(nomeDigitado, sugestaoDigitada);
-                    SugestaoDAO.incluirSugestao(sugestaoIncluida);
+                    Sugestoes.getInstancia().getListaSugestoes().add(sugestaoIncluida);
+                    Sugestoes.getInstancia().salvaSugestoes();
+                    break;
+                    
+                case 2:
+                    i= Menu.imprimeMenuConsulta();
+                    switch (i){
+                        case 1:
+                            for(Sugestao s : Sugestoes.getInstancia().getListaSugestoes()) {
+                                System.out.println(s);
+                            } 
+                            break;
+                        case 2:
+                            int cont =0;
+                            System.out.println("Digite o nome a ser consultado: ");
+                            nomeDigitado = teclado.nextLine();
+                            for(Sugestao s : Sugestoes.getInstancia().getListaSugestoes()) {
+                                if (s.getNome().equalsIgnoreCase(nomeDigitado)){
+                                    System.out.println(s);
+                                    cont++;
+                                }
+                            } 
+                            if(cont == 0){
+                                System.out.println("Nenhum resultado encontrado");
+                            }
+                            break;
+                    }
+                    
+                     break;
+                            
             }
 
-        } while (i == 3);
+        } while (i != 0);
 
     }
 

@@ -5,18 +5,19 @@
  */
 package trabalho2;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 
 /**
  *
  * @author aluno
  */
-public class Sugestao {
+public class Sugestao implements Serializable{
 
     public Sugestao(String nome, String sugestao) {
         this.nome = nome;
         this.sugestao = sugestao;
-        this.dataSugestao = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new java.util.Date());;
+        this.dataSugestao = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new java.util.Date());
     }
     private String nome;
     private String sugestao;
