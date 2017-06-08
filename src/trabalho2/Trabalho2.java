@@ -53,8 +53,9 @@ public class Trabalho2 {
                             System.out.println("Digite o nome a ser consultado: ");
                             nomeDigitado = teclado.nextLine();
                             for(Sugestao s : Sugestoes.getInstancia().getListaSugestoes()) {
-                                if (s.getNome().equalsIgnoreCase(nomeDigitado)){
+                                if (s.getNome().toLowerCase().contains(nomeDigitado.toLowerCase())){
                                     System.out.println(s);
+                                    System.out.println("******");
                                     cont++;
                                 }
                             } 
@@ -62,6 +63,8 @@ public class Trabalho2 {
                                 System.out.println("Nenhum resultado encontrado");
                             }
                             break;
+                        case 3:
+                            System.out.println("Digite o nome a ser consultado: ");
                     }
                     
                      break;
