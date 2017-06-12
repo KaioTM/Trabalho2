@@ -1,4 +1,4 @@
-package trabalho2.controller;
+package controller;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -7,13 +7,13 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
-import trabalho2.Sugestao;
-import trabalho2.view.Tela;
+import model.Sugestao;
+import view.Tela;
 
 public class Sugestoes implements Serializable {
 
     private ArrayList<Sugestao> listaSugestoes;
-    private static final String nome_arquivo = "sugestoes.ser";
+    private static final String nomeArquivo = "sugestoes.ser";
 
 //Singleton
     private static Sugestoes instancia = null;
@@ -30,10 +30,20 @@ public class Sugestoes implements Serializable {
     }
     //Singleton
 
+    //Getters e Setters
+    public ArrayList<Sugestao> getListaSugestoes() {
+        return listaSugestoes;
+    }
+
+    public void setListaSugestoes(ArrayList<Sugestao> listaSugestoes) {
+        this.listaSugestoes = listaSugestoes;
+    }
+    //Getters e Setters
+    
     public void carregaSugestoes() {
 
         try {
-            FileInputStream fileIn = new FileInputStream(nome_arquivo);
+            FileInputStream fileIn = new FileInputStream(nomeArquivo);
             ObjectInputStream in = new ObjectInputStream(fileIn);
             listaSugestoes = (ArrayList<Sugestao>) in.readObject();
             in.close();
@@ -47,13 +57,12 @@ public class Sugestoes implements Serializable {
             c.printStackTrace();
             return;
         }
-
     }
 
     public void salvaSugestoes() {
 
         try {
-            FileOutputStream fileOut = new FileOutputStream(nome_arquivo);
+            FileOutputStream fileOut = new FileOutputStream(nomeArquivo);
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
             out.writeObject(listaSugestoes);
             out.close();
@@ -64,17 +73,10 @@ public class Sugestoes implements Serializable {
         }
     }
 
-    public ArrayList<Sugestao> getListaSugestoes() {
-        return listaSugestoes;
-    }
-
-    public void setListaSugestoes(ArrayList<Sugestao> listaSugestoes) {
-        this.listaSugestoes = listaSugestoes;
-    }
-
-    public void buscaSugestoes() {
+// Métodos responsáveis por busca no ArrayList de sugestões
+    public void buscaTodasSugestoes() {
         for (Sugestao s : Sugestoes.getInstancia().getListaSugestoes()) {
-            System.out.println(s);
+            Tela.imprimeSugestao(s);
         }
     }
 
@@ -83,22 +85,28 @@ public class Sugestoes implements Serializable {
         String nomeDigitado = Tela.capturaNome();
         for (Sugestao s : Sugestoes.getInstancia().getListaSugestoes()) {
             if (s.getNome().toLowerCase().contains(nomeDigitado.toLowerCase())) {
-                System.out.println(s);
+                Tela.imprimeSugestao(s);
                 cont++;
             }
         }
         Tela.imprimeResultado(cont);
     }
-    
-    public void buscaFraseChave(){
+
+    public void buscaFraseChave() {
         int cont = 0;
         String fraseChave = Tela.capturaFraseChave();
         for (Sugestao s : Sugestoes.getInstancia().getListaSugestoes()) {
             if (s.getSugestao().toLowerCase().contains(fraseChave.toLowerCase())) {
-                System.out.println(s);
+                Tela.imprimeSugestao(s);
                 cont++;
             }
         }
         Tela.imprimeResultado(cont);
+    }
+// Métodos responsáveis por busca no ArrayList de sugestões
+    
+    public static Sugestao incluiSugestao(){
+        Sugestao sugestaoIncluida = new Sugestao(Tela.capturaNome(), Tela.capturaSugestao());
+        return sugestaoIncluida;
     }
 }
