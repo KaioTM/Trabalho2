@@ -6,10 +6,6 @@ import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 import model.Sugestao;
 
-/**
- *
- * @author aluno
- */
 public class Tela {
     public static void headerSistema() throws IOException, InterruptedException{
         Tela.limpaTela();
