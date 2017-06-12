@@ -109,4 +109,22 @@ public class Tela {
     public static void telaEmEspera() throws InterruptedException{
         TimeUnit.SECONDS.sleep(2);
     }
+    public static String capturaLogin(){
+        Scanner teclado = new Scanner(System.in);
+        System.out.println("Digite o seu login: ");
+        return teclado.nextLine();
+    }
+    public static String capturaSenha(){
+        Scanner teclado = new Scanner(System.in);
+        System.out.println("Digite sua senha: ");
+        return teclado.nextLine();
+    }
+    public static void acessoConcedido() throws InterruptedException{
+        System.out.println("Acesso concedido!");
+        TimeUnit.SECONDS.sleep(1);
+    }
+    public static void acessoNegado() throws InterruptedException{
+        System.out.println("Acesso negado!");
+        TimeUnit.SECONDS.sleep(1);
+    }
 }

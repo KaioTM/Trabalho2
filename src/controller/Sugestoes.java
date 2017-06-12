@@ -7,7 +7,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.concurrent.TimeUnit;
 import model.Sugestao;
 import view.Tela;
 
@@ -27,7 +26,7 @@ public class Sugestoes implements Serializable {
     }
 
     private Sugestoes() {
-        listaSugestoes = new ArrayList<Sugestao>();
+        listaSugestoes = new ArrayList<>();
     }
     //Singleton
  
