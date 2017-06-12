@@ -5,8 +5,10 @@
  */
 package view;
 
+import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 import model.Sugestao;
 
 /**
@@ -14,9 +16,15 @@ import model.Sugestao;
  * @author aluno
  */
 public class Tela {
+    public static void headerSistema(){
+        System.out.println("*************************************************************");
+        System.out.println("********** Sistema de Inclusão de Sugestões v 1.0 ***********");
+        System.out.println("*************************************************************");
+    }
     public static int imprimeMenuInicial(){
         int opcao = -1;
         Scanner teclado = new Scanner(System.in);
+        headerSistema();
         System.out.println("\nMenu");
         System.out.println("----------------------");
         System.out.println("1- Incluir Sugestão");
@@ -34,6 +42,7 @@ public class Tela {
     public static int imprimeMenuConsulta(){
         int opcao = -1;
         Scanner teclado = new Scanner(System.in);
+        headerSistema();
         System.out.println("\nMenu");
         System.out.println("----------------------");
         System.out.println("1- Listar todas as Sugestões");
@@ -50,21 +59,24 @@ public class Tela {
         }
         return opcao;    
     }
+    public static void limpaTela() throws IOException, InterruptedException{
+        new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+    }
     public static String capturaNome(){
         Scanner teclado = new Scanner(System.in);
-        System.out.println("Digite o nome: ");
+        System.out.println("\nDigite o nome: ");
         return teclado.nextLine();
     }
     
     public static String capturaSugestao(){
         Scanner teclado = new Scanner(System.in);
-        System.out.println("Digite a Sugestao: ");
+        System.out.println("\nDigite a Sugestao: ");
         return teclado.nextLine();
     }
     
     public static String capturaFraseChave(){
         Scanner teclado = new Scanner(System.in);
-        System.out.println("Digite a frase a ser consultada: ");
+        System.out.println("\nDigite a frase a ser consultada: ");
         return teclado.nextLine();
     }
     
@@ -84,9 +96,17 @@ public class Tela {
         }
         
     }
+    
+    public static void aguardandoTecla(){
+        Scanner teclado = new Scanner(System.in);
+        System.out.println("Tecle enter para continuar...");
+        teclado.nextLine();
+    }
     public static void imprimeSugestao(Sugestao s){
         System.out.println(s);
     }
     
-    
+    public static void telaEmEspera() throws InterruptedException{
+        TimeUnit.SECONDS.sleep(2);
+    }
 }

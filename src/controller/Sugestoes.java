@@ -7,6 +7,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 import model.Sugestao;
 import view.Tela;
 
@@ -29,6 +30,7 @@ public class Sugestoes implements Serializable {
         listaSugestoes = new ArrayList<Sugestao>();
     }
     //Singleton
+ 
 
     //Getters e Setters
     public ArrayList<Sugestao> getListaSugestoes() {
@@ -40,7 +42,7 @@ public class Sugestoes implements Serializable {
     }
     //Getters e Setters
     
-    public void carregaSugestoes() {
+    public void carregaSugestoes() throws InterruptedException {
 
         try {
             FileInputStream fileIn = new FileInputStream(nomeArquivo);
@@ -49,6 +51,7 @@ public class Sugestoes implements Serializable {
             in.close();
             fileIn.close();
             System.out.println("Sistema Carregado");
+            Tela.telaEmEspera();
         } catch (IOException i) {
             i.printStackTrace();
             return;
@@ -59,7 +62,7 @@ public class Sugestoes implements Serializable {
         }
     }
 
-    public void salvaSugestoes() {
+    public void salvaSugestoes() throws InterruptedException {
 
         try {
             FileOutputStream fileOut = new FileOutputStream(nomeArquivo);
@@ -68,6 +71,7 @@ public class Sugestoes implements Serializable {
             out.close();
             fileOut.close();
             System.out.printf("Salvo com sucesso!");
+            Tela.telaEmEspera();
         } catch (IOException i) {
             i.printStackTrace();
         }
