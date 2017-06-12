@@ -52,6 +52,8 @@ public class main {
                             }
                              break;
                         }else{
+                            login = null;
+                            senha = null;
                             break;
                         }
                     }else{
@@ -81,6 +83,8 @@ public class main {
                             }
                              break;
                         }else{
+                            login = null;
+                            senha = null;
                             break;
                         }
                     }

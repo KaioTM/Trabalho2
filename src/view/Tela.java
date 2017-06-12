@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package view;
 
 import java.io.IOException;
@@ -16,12 +11,13 @@ import model.Sugestao;
  * @author aluno
  */
 public class Tela {
-    public static void headerSistema(){
+    public static void headerSistema() throws IOException, InterruptedException{
+        Tela.limpaTela();
         System.out.println("*************************************************************");
         System.out.println("********** Sistema de Inclusão de Sugestões v 1.0 ***********");
         System.out.println("*************************************************************");
     }
-    public static int imprimeMenuInicial(){
+    public static int imprimeMenuInicial() throws IOException, InterruptedException{
         int opcao = -1;
         Scanner teclado = new Scanner(System.in);
         headerSistema();
@@ -39,7 +35,7 @@ public class Tela {
         }
         return opcao;
     }
-    public static int imprimeMenuConsulta(){
+    public static int imprimeMenuConsulta() throws IOException, InterruptedException{
         int opcao = -1;
         Scanner teclado = new Scanner(System.in);
         headerSistema();
