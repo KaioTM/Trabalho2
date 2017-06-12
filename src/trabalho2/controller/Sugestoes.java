@@ -1,9 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package trabalho2;
+package trabalho2.controller;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -12,11 +7,9 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
+import trabalho2.Sugestao;
+import trabalho2.view.Tela;
 
-/**
- *
- * @author KaioT
- */
 public class Sugestoes implements Serializable {
 
     private ArrayList<Sugestao> listaSugestoes;
@@ -79,4 +72,33 @@ public class Sugestoes implements Serializable {
         this.listaSugestoes = listaSugestoes;
     }
 
+    public void buscaSugestoes() {
+        for (Sugestao s : Sugestoes.getInstancia().getListaSugestoes()) {
+            System.out.println(s);
+        }
+    }
+
+    public void buscaSugestoesPorNome() {
+        int cont = 0;
+        String nomeDigitado = Tela.capturaNome();
+        for (Sugestao s : Sugestoes.getInstancia().getListaSugestoes()) {
+            if (s.getNome().toLowerCase().contains(nomeDigitado.toLowerCase())) {
+                System.out.println(s);
+                cont++;
+            }
+        }
+        Tela.imprimeResultado(cont);
+    }
+    
+    public void buscaFraseChave(){
+        int cont = 0;
+        String fraseChave = Tela.capturaFraseChave();
+        for (Sugestao s : Sugestoes.getInstancia().getListaSugestoes()) {
+            if (s.getSugestao().toLowerCase().contains(fraseChave.toLowerCase())) {
+                System.out.println(s);
+                cont++;
+            }
+        }
+        Tela.imprimeResultado(cont);
+    }
 }

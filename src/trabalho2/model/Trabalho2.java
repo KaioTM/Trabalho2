@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package trabalho2;
+package trabalho2.model;
 
-import java.security.Timestamp;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
+import trabalho2.controller.Sugestoes;
+import trabalho2.view.Tela;
 import java.util.Scanner;
+import trabalho2.Sugestao;
 
 /**
  *
@@ -27,7 +27,7 @@ public class Trabalho2 {
         Sugestoes.getInstancia().carregaSugestoes();
 
         do {
-            i = Menu.imprimeMenuInicial();
+            i = Tela.imprimeMenuInicial();
             switch (i) {
 
                 case 1:
@@ -41,30 +41,16 @@ public class Trabalho2 {
                     break;
                     
                 case 2:
-                    i= Menu.imprimeMenuConsulta();
+                    i= Tela.imprimeMenuConsulta();
                     switch (i){
                         case 1:
-                            for(Sugestao s : Sugestoes.getInstancia().getListaSugestoes()) {
-                                System.out.println(s);
-                            } 
+                            Sugestoes.getInstancia().buscaSugestoes();
                             break;
                         case 2:
-                            int cont =0;
-                            System.out.println("Digite o nome a ser consultado: ");
-                            nomeDigitado = teclado.nextLine();
-                            for(Sugestao s : Sugestoes.getInstancia().getListaSugestoes()) {
-                                if (s.getNome().toLowerCase().contains(nomeDigitado.toLowerCase())){
-                                    System.out.println(s);
-                                    System.out.println("******");
-                                    cont++;
-                                }
-                            } 
-                            if(cont == 0){
-                                System.out.println("Nenhum resultado encontrado");
-                            }
+                            Sugestoes.getInstancia().buscaSugestoesPorNome();
                             break;
                         case 3:
-                            System.out.println("Digite o nome a ser consultado: ");
+                            Sugestoes.getInstancia().buscaFraseChave();
                     }
                     
                      break;

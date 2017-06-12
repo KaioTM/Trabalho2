@@ -1,17 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package trabalho2;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 
-/**
- *
- * @author aluno
- */
 public class Sugestao implements Serializable{
 
     public Sugestao(String nome, String sugestao) {
@@ -51,7 +42,9 @@ public class Sugestao implements Serializable{
     public String toString() {
         return "Nome: " + nome + ""
                 + "\nSugestão: " + sugestao + ""
-                + "\nData da sugestão: " + dataSugestao;
+                + "\nData da sugestão: " + dataSugestao
+                + "\n**********";
+        
     }
     
 }
